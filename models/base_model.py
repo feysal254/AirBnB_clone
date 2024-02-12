@@ -45,10 +45,10 @@ class BaseModel:
     def save(self):
         """updates the publice instance attribute
         updated_at with the current datetime"""
-        if self.updated_at is not datetime.now():
+        if self.updated_at is not datetime.utcnow():
             self.updated_at = datetime.now()
         else:
-            models.storage.new(self.to_dict())
+            models.storage.new(self)
         models.storage.save()
 
     def to_dict(self):
